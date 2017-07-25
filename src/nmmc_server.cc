@@ -248,9 +248,9 @@ void* Server::BinLogLoop(void* arg){
     std::string uri = "mysql://" + inst->dbuser_ + ":" + inst->dbpswd_ + "@" + inst->dbhost_ + ":" + inst->dbport_;
 
     // インスタンス準備
-    std::auto_ptr<Binary_log_driver> drv(create_transport(uri.c_str()));
-    drv.get()->set_serverid(inst->dbserverid_);
-    Binary_log          binlog(drv.get());
+    auto                drv = create_transport(uri.c_str());
+    drv->set_serverid(inst->dbserverid_);
+    Binary_log          binlog(drv);
     Decoder             decode;
     Converter           converter;
     Binary_log_event    *tmpevent = NULL;
