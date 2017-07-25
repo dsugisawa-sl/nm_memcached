@@ -327,13 +327,13 @@ void* Server::BinLogLoop(void* arg){
                             }
                         }
                         if (event->get_event_type() == WRITE_ROWS_EVENT){
-                            LOG("write rows.(%u:%02x)", (unsigned)itm_key, itm.data[0]);
+//                          LOG("write rows.(%u:%02x)", (unsigned)itm_key, itm.data[0]);
                             tbl->Add(itm_key, &itm, 0);
                         }else if (event->get_event_type() == UPDATE_ROWS_EVENT && update_idx++){
                             if (itm.stat.valid == 0){
                                 tbl->Del(itm_key, 0);
                             }else{
-                                LOG("write rows.(%u:%02x) update", (unsigned)itm_key, itm.data[0]);
+//                              LOG("write rows.(%u:%02x) update", (unsigned)itm_key, itm.data[0]);
                                 tbl->Add(itm_key, &itm, 0);
                             }
                         }else if (event->get_event_type() == DELETE_ROWS_EVENT){

@@ -34,6 +34,7 @@ int Netmap::Open(const char* ifnm,int affinity, int port){
     char nmbf[64] = {0};
     struct nmreq base_nmd;
 
+    affinity_ = affinity;
     // 対象インタフェイスのMACアドレスを保持
     FindMacAddr(ifnm);
     //
